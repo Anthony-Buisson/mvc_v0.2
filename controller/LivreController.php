@@ -3,19 +3,24 @@
 class LivreController extends Controller{
 
     public function liste(){
-        $livres = [
-            1=>['id'=>1, 'nom'=>'Nom du livre'],
-            2=>['id'=>2, 'nom'=>'Nom du livre 2'],
-            3=>['id'=>3, 'nom'=>'Nom du livre 3'],
-        ];
+        $livres = new Livre();
+        $livres = $livres->getAll();
 
         $this->set(['livres'=>$livres]);
         $this->render('liste');
     }
 
     public function detail(){
-        $id = (int)$_GET['id'];
+        if(isset($_GET['id'])){
+            $id = (int) $_GET['id'];
+        }
+        else{
+            header('Location: '. ROOT.'livre/liste');
+            return;
+        }
         $livre = new Livre($id);
+//        var_dump($livre);
+//        die();
         $this->set(['livre'=>$livre]);
         $this->render('detail');
     }
@@ -23,19 +28,19 @@ class LivreController extends Controller{
     public function ajouter_modifier(){
         $id = isset($_GET['id']) ? (int)$_GET['id'] : null;
         $livre = new Livre($id);
-        $this->set(['livre'=> $livre]);
+        $auteurs = new Auteur();
+        $this->set(['livre'=> $livre, 'auteurs'=>$auteurs->getAll()]);
         $this->render('update');
     }
     public function post(){
         $livre = new Livre();
         $livre->nom = $_POST['nom'];
-        $livre->auteur = $_POST['auteur'];
+        $livre->id_auteur = $_POST['id_auteur'];
         $livre->resume = $_POST['resume'];
         $livre->isbn = $_POST['isbn'];
         $livre->prix = ($_POST['prix']);
-        $livre->id = isset($_POST['id']) ? $_POST['id'] : null;
-        var_dump($livre);
+        $livre->id = isset($_POST['id']) ? (int)$_POST['id'] : null;
         $livre->save();
-        header('Location: '. ROOT.'livre/liste');
+        isset($_POST['id']) ? header('Location: '. ROOT.'livre/detail?id='.$livre->id) : header('Location: '. ROOT.'livre/liste');
     }
 }
