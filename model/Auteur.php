@@ -30,6 +30,13 @@ class Auteur extends Model {
         return $req->fetchAll();
     }
 
+    public function getLivres(){
+        $req = $this->bdd->prepare('SELECT * FROM livre WHERE id_auteur=:id;');
+        $req->bindValue(':id', $this->id);
+        $req->execute();
+        return $req->fetchAll();
+    }
+
     public function create(){
         $req = $this->bdd->prepare('INSERT INTO auteur (nom, prenom, date_naissance) VALUE (:nom, :prenom, :date_naissance)');
         $req->bindValue(':nom', $this->nom);
@@ -49,7 +56,7 @@ class Auteur extends Model {
     }
 
     public function delete(){
-        $req = $this->bdd->prepare('DELETE FROM `auteur` WHERE `id`=:id');
+        $req = $this->bdd->prepare('DELETE FROM `auteur` WHERE `id`=:id; DELETE FROM `livre` WHERE `id_auteur`=:id');
         $req->bindValue(':id', $this->id);
         $req->execute();
     }

@@ -11,4 +11,6 @@ Auteur : <b><?php echo $livre->getAuteur()['nom'].' '.  $livre->getAuteur()['pre
 Prix : <b><?php echo $livre->prix ?>€</b><br>
 
 ***********
-<a href="<?php echo ROOT ?>livre/ajouter_modifier?id=<?php echo $livre->id?>">Modifier</a>
+
+<a href="<?php echo ROOT ?>livre/ajouter_modifier?id=<?php echo $livre->id?>">Modifier</a><br>
+<a href="<?php echo ROOT ?>livre/supprimer?id=<?php echo $livre->id?>">Supprimer</a>

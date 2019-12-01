@@ -32,6 +32,7 @@ class LivreController extends Controller{
         $this->set(['livre'=> $livre, 'auteurs'=>$auteurs->getAll()]);
         $this->render('update');
     }
+
     public function post(){
         $livre = new Livre();
         $livre->nom = $_POST['nom'];
@@ -42,5 +43,14 @@ class LivreController extends Controller{
         $livre->id = isset($_POST['id']) ? (int)$_POST['id'] : null;
         $livre->save();
         isset($_POST['id']) ? header('Location: '. ROOT.'livre/detail?id='.$livre->id) : header('Location: '. ROOT.'livre/liste');
+    }
+
+    public function supprimer(){
+        if(isset($_GET['id'])){
+            $id = (int) $_GET['id'];
+            $livre = new Livre($id);
+            $livre->delete();
+        }
+        header('Location: '. ROOT.'livre/liste');
     }
 }

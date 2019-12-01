@@ -38,4 +38,25 @@ class AuteurController extends Controller{
         $auteur->save();
         isset($_POST['id']) ? header('Location: '. ROOT.'auteur/detail?id='.$auteur->id) : header('Location: '. ROOT.'auteur/liste');
     }
+
+    public function livres(){
+        if(isset($_GET['id'])) $id = (int) $_GET['id'];
+        else{
+            header('Location: '. ROOT.'auteur/liste');
+            return;
+        }
+        $auteur = new Auteur($id);
+        $livres = $auteur->getLivres();
+        $this->set(['livres'=>$livres, 'auteur'=>$auteur]);
+        $this->render('livres');
+    }
+
+    public function supprimer(){
+        if(isset($_GET['id'])){
+            $id = (int) $_GET['id'];
+            $auteur = new Auteur($id);
+            $auteur->delete();
+        }
+        header('Location: '. ROOT.'auteur/liste');
+    }
 }

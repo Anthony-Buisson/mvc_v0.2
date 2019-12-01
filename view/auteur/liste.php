@@ -1,4 +1,4 @@
-
+<?php /** @var Auteur[] $auteurs */?>
 <h1>Auteurs <a href="<?php echo ROOT ?>livre/liste">Livres</a></h1>
 
 <ul>
