@@ -5,7 +5,6 @@ class AuteurController extends Controller{
     public function liste(){
         $auteurs = new Auteur();
         $auteurs = $auteurs->getAll();
-
         $this->set(['auteurs'=>$auteurs]);
         $this->render('liste');
     }
@@ -17,8 +16,6 @@ class AuteurController extends Controller{
             return;
         }
         $auteur = new Auteur($id);
-//        var_dump($auteur);
-//        die();
         $this->set(['auteur'=>$auteur]);
         $this->render('detail');
     }

@@ -1,8 +1,7 @@
 <?php
-/** @var Auteur $auteur */
-/** @var Livre $livres */
+/** @var Auteur $auteur **/
+/** @var Livre[] $livres **/
 ?>
-<h1>Livres <a href="<?php echo ROOT ?>auteur/liste">Auteurs</a></h1>
 <h2>Livres de l'auteur <?php echo $auteur->nom.' '.$auteur->prenom?></h2>
 <a href="<?php echo ROOT ?>auteur/detail?id=<?php echo $auteur->id?>">< Retour</a>
 <ul>

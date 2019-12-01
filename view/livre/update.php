@@ -1,8 +1,9 @@
 
 <?php
-/** @var Auteur $auteurs */
-/** @var Livre $livre */
-$backlink = isset($livre->id) ? ROOT.'livre/detail?id='.$livre->id : ROOT.'livre/liste';?>
+/** @var Auteur[] $auteurs **/
+/** @var Livre $livre **/
+$backlink = isset($livre->id) ? ROOT.'livre/detail?id='.$livre->id : ROOT.'livre/liste';
+?>
 <a href="<?php echo $backlink?>">< Retour</a>
 <form action="<?php echo ROOT?>livre/post" method="post">
     <label for="title">Titre : </label>

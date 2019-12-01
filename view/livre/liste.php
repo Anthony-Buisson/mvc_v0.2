@@ -1,4 +1,7 @@
-<h1>Livres <a href="<?php echo ROOT ?>auteur/liste">Auteurs</a></h1>
+<?php
+/** @var Livre[] $livres **/
+?>
+<b style="border: 1px solid black;">Livres <a href="<?php echo ROOT ?>auteur/liste">Auteurs</a></b>
 
 <ul>
 <?php foreach($livres as $livre){ ?>

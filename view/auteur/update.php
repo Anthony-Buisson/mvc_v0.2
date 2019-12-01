@@ -1,4 +1,6 @@
-
+<?php
+/** @var Auteur $auteur **/
+?>
 <form action="<?php echo ROOT?>auteur/post" method="post">
     <label for="writer">Prénom : </label>
     <input id="writer" name="prenom" type="text" placeholder="Jean" value="<?php echo isset($auteur->prenom) ? $auteur->prenom : '';?>">
